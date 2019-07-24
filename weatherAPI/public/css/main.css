@@ -13,6 +13,15 @@
     max-width: fit-content;
 }
 
+#resultsPanel {
+    max-width: fit-content;
+}
+
+#resultsHeader {
+    margin-top: 0;
+    padding-left: 50px
+}
+
 h1 {
     color: pink;
 }

@@ -1,28 +1,37 @@
 <% include ./partials/header.ejs =%>
-<h1>Showing results for <%= data["title"] %></h1>
+<div class="jumbotron" id="resultsHeader">
+        <h1>Results Page!!!!</h1>
+</div>
+
 <div class="container">
-        <table class="table table-bordered" id="showTable">
-                <tr>
-                    <th>Date (yyyy-mm-dd)</th>
-                    <th>Forecast</th>
-                    <th>Accuracy</th>
-                </tr>
-                <% for(var i = 0; i < 5; i++) { %>
-                   <% if(data["consolidated_weather"][i]["weather_state_name"] === "Heavy Rain" || "Thunderstorm" || "Hail") { %>
-                    <tr class="danger">
-                        <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
-                        <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
-                        <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
-                    </tr>
-                    <% } else { %>
-                        <tr class="active">
-                                <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
-                                <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
-                                <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
-                        </tr>
-                    <% } %>
-                <%}%>
-        </table>
+        <div class="panel panel-default" id="resultsPanel">
+                <div class="panel-heading">results for <%= data["title"] %></div>
+                <div class="panel-body">
+                        <table class="table table-bordered" id="showTable">
+                                <tr>
+                                    <th>Date (yyyy-mm-dd)</th>
+                                    <th>Forecast</th>
+                                    <th>Accuracy</th>
+                                </tr>
+                                <% for(var i = 0; i < 5; i++) { %>
+                                   <% if(data["consolidated_weather"][i]["weather_state_name"] === "Heavy Rain" || "Thunderstorm" || "Hail") { %>
+                                    <tr class="danger">
+                                        <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
+                                        <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
+                                        <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
+                                    </tr>
+                                    <% } else { %>
+                                        <tr class="active">
+                                                <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
+                                                <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
+                                                <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
+                                        </tr>
+                                    <% } %>
+                                <%}%>
+                        </table>
+                </div>
+        </div>
+
 </div>
 <a href="/">Go back to the landing page?</a>
 <% include ./partials/footer.ejs =%>

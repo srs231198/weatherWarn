@@ -8,12 +8,20 @@
                     <th>Accuracy</th>
                 </tr>
                 <% for(var i = 0; i < 5; i++) { %>
-                   <tr>
-                     <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
-                     <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
-                     <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
-                   </tr>
-                <% } %>
+                   <% if(data["consolidated_weather"][i]["weather_state_name"] === "Heavy Rain" || "Thunderstorm" || "Hail") { %>
+                    <tr class="danger">
+                        <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
+                        <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
+                        <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
+                    </tr>
+                    <% } else { %>
+                        <tr class="active">
+                                <td><%= data["consolidated_weather"][i]["applicable_date"] %></td>
+                                <td><%= data["consolidated_weather"][i]["weather_state_name"] %></td>
+                                <td><%= data["consolidated_weather"][i]["predictability"] %>%</td>
+                        </tr>
+                    <% } %>
+                <%}%>
         </table>
 </div>
 <a href="/">Go back to the landing page?</a>

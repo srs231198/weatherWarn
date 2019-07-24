@@ -5,6 +5,9 @@ var bodyParser = require("body-parser");
 
 app.set("view engine", "ejs");
 
+const ejsLint = require('ejs-lint');
+ejsLint("results");
+
 app.use(express.static(__dirname + '/public'));
 // app.use(bodyParser.urlencoded({
 //     extended: true
@@ -23,22 +26,32 @@ app.get("/results", function(req, res) {
         request(url, function(error, response, body) {
             if(!error && response.statusCode == 200){
                 var data = JSON.parse(body);
-                weatherIdentify(data);
+                if(typeof data === 'undefined'){
+                    res.redirect("/");
+                }
+                else {
+                    weatherIdentify(data);
+                }
             } else {
                 console.log(error);
             }
         });
     }
     var weatherIdentify = function(data) {
-        var url = "https://www.metaweather.com/api/location/"+ data[0].woeid + "/";
-        request(url, function(error, response, body) {
-            if(!error && response.statusCode == 200){
-                var data = JSON.parse(body);
-                res.render("results", {data: data});
-            } else {
-                console.log(error);
-            }
-        });
+        if(typeof data !== 'undefined'){
+            var url = "https://www.metaweather.com/api/location/"+ data[0].woeid + "/";
+            request(url, function(error, response, body) {
+                if(!error && response.statusCode == 200){
+                    var data = JSON.parse(body);
+                    res.render("results", {data: data});
+                } else {
+                    console.log(error);
+                }
+            });            
+        }
+        else {
+            res.redirect("/");
+        }
     }
     locationIdentify();
 })

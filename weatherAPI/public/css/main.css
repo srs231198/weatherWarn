@@ -9,6 +9,10 @@
     padding-left: 33%;
 }
 
+#showTable {
+    max-width: fit-content;
+}
+
 h1 {
     color: pink;
 }

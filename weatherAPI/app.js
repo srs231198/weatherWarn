@@ -34,7 +34,6 @@ app.get("/results", function(req, res) {
         request(url, function(error, response, body) {
             if(!error && response.statusCode == 200){
                 var data = JSON.parse(body);
-                console.log(data["consolidated_weather"][0]["weather_state_name"]);
                 res.render("results", {data: data});
             } else {
                 console.log(error);

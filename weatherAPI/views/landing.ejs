@@ -1,3 +1,23 @@
 <% include ./partials/header.ejs =%>
 
+
+
+<div class="container">
+    <div class="jumbotron container">
+        <h1>
+            This is the weather warn system!!!
+        </h1>
+    </div>
+</div>
+
+<div class="container" id="searchContainer">
+    <form action="/results" method="GET">
+        <div class="form-group">
+            <label for="locationEntry">Location for weather</label>
+            <input type="text" class="form-control" id="locationEntry" name="user[location]" placeholder="enter city">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
 <% include ./partials/footer.ejs =%>
